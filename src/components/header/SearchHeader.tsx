@@ -1,4 +1,3 @@
-// Assuming your component file name is SearchHeader.tsx
 import React, { useRef } from 'react';
 import {
     Text,
@@ -6,8 +5,9 @@ import {
     TextInput,
     TouchableOpacity,
     View,
+    ImageBackground,
 } from 'react-native';
-import { styles } from './styles'; // Adjust the import path as necessary
+import { styles } from './styles';
 
 interface SearchHeaderProps {
     searchText: string;
@@ -15,11 +15,16 @@ interface SearchHeaderProps {
 }
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChange }) => {
-    return (
-        <>
-            <View style={styles.searchBarContainer}>
-                <TouchableOpacity>
+    const searchRef = useRef<TextInput>(null);
 
+    return (
+        <ImageBackground
+            source={require('../../assets/icons/nav_bar.png')}
+            style={styles.backGround}
+        >
+            <View style={styles.outerWrap}>
+                <TouchableOpacity
+                >
                     <Image
                         style={styles.backIcon}
                         source={require('../../assets/icons/arrow.png')}
@@ -27,6 +32,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChang
                 </TouchableOpacity>
                 <TextInput
                     style={styles.searchText}
+                    ref={searchRef}
                     placeholder="Search"
                     cursorColor="#ccc"
                     placeholderTextColor="#ccc"
@@ -34,14 +40,14 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChang
                     value={searchText}
                     onChangeText={handleTextChange}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => searchRef.current?.focus()}>
                     <Image
                         style={styles.searchIcon}
                         source={require('../../assets/icons/search.png')}
                     />
                 </TouchableOpacity>
             </View>
-        </>
+        </ImageBackground>
     );
 };
 

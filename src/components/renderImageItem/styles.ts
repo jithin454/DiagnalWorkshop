@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 24,
     marginHorizontal: 10,
-    width: (width - 80) / 3,
   },
   errorImage: {
     width: '100%',
@@ -30,8 +29,8 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
   },
   name: {
-    color: '#000',
-    fontSize: 14,
+    color: '#fff',
+    fontSize: 16,
     textAlign: 'left',
     fontFamily: 'TitilliumWeb-Light',
   },
