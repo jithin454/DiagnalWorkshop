@@ -5,30 +5,35 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
+    SafeAreaView,
     StyleSheet,
     Text,
     View,
 } from 'react-native';
-
-
+import RenderImageItem from '../../components/renderImageItem/renderImageItem';
+import { styles } from './styles';
+import SearchHeader from '../../components/header/SearchHeader';
 
 function HomeScreen(): React.JSX.Element {
+    const [searchText, setSearchText] = useState<string>('');
+
+    const handleTextChange = (text: string) => {
+        setSearchText(text);
+    };
     return (
-        <View style={styles.sectionContainer}>
-            <Text >Welcome</Text>
-        </View>
+        <SafeAreaView style={styles.Container}>
+            <SearchHeader
+                searchText={searchText}
+                handleTextChange={handleTextChange}
+            />
+            <View>
+                <Text >Welcome</Text>
+                <RenderImageItem />
+            </View>
+        </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    sectionContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-});
 
 export default HomeScreen;
