@@ -9,14 +9,14 @@ const { width, height } = Dimensions.get('window');
 
 const AboutScreen = () => {
   const [listData, setListData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
 
   // fetching the data to show list of items in a scrollview
 
   const fetchData = async () => {
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
       const response = await fetch(`${ENV.apiUrl}CONTENTLISTINGPAGE-PAGE1.json`);
       const data = await response.json();
       const {
@@ -42,16 +42,20 @@ const AboutScreen = () => {
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {listData.map((item, index) => (                              // maping for preview the list of data
-            <RenderImageItem key={index.toString()} item={item} />
-          ))}
-        </ScrollView>
+        <>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.viewAllButton}>
+            <Text style={styles.viewAllButtonText}>View All.</Text>
+          </TouchableOpacity>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {listData.map((item, index) => (                              // maping for preview the list of data
+              <RenderImageItem key={index.toString()} item={item} />
+            ))}
+          </ScrollView>
+
+        </>
+
       )}
 
-      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.viewAllButton}>
-        <Text style={styles.viewAllButtonText}>View All</Text>
-      </TouchableOpacity>
     </View>
   );
 };

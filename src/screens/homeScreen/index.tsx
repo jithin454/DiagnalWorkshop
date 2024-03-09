@@ -10,8 +10,8 @@ function HomeScreen(): React.JSX.Element {
   const [searchText, setSearchText] = useState<string>('');
   const [state, dispatch] = useReducer(reducer, initialState);
   const regex = useMemo(() => new RegExp(`^.{0,30}${searchText}.{0,}`, 'i'), [searchText]);
-  
-// Function to fetch data and dispatch corresponding action with repect to the API response
+
+  // Function to fetch data and dispatch corresponding action with repect to the API response
 
   const fetchData = useCallback(async () => {
     try {
@@ -60,7 +60,9 @@ function HomeScreen(): React.JSX.Element {
     }
   };
 
-  const footerComponent = useCallback(() =>  <View style={styles.footer} />, []);
+  const footerComponent = useCallback(() => <View style={styles.footer} >
+   {!state.listEnd && <ActivityIndicator color={'red'} />}
+  </View>, [state.listEnd]);
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -71,7 +73,7 @@ function HomeScreen(): React.JSX.Element {
       {state.loaded ? (
         <FlatList
           data={filteredData}
-          renderItem={({item}) => <RenderImageItem item={item} />}
+          renderItem={({ item }) => <RenderImageItem item={item} />}
           numColumns={3}
           style={styles.listStyle}
           contentContainerStyle={styles.listContainer}
@@ -84,7 +86,7 @@ function HomeScreen(): React.JSX.Element {
         />
       ) : (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size={'large'}  color={'red'} />
+          <ActivityIndicator size={'large'} color={'red'} />
         </View>
       )}
     </SafeAreaView>

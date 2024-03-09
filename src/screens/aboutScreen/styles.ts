@@ -5,9 +5,11 @@ const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#000'
   },
   heading: {
     fontSize: 24,
@@ -32,7 +34,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   viewAllButton: {
-    marginTop: 30,
+    marginBottom: 30,
     backgroundColor: '#007AFF',
     borderRadius: 10,
     paddingVertical: 10,
