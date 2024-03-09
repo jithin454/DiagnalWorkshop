@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
 import { ActivityIndicator, FlatList, NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, TextInputKeyPressEventData, View } from 'react-native';
 import RenderImageItem from '../../components/renderImageItem/renderImageItem';
-import SearchHeader from '../../components/header/SearchHeader';
+import SearchHeader from '../../components/searchHeader/SearchHeader';
 import { styles } from './styles';
 import EmptyListComponent from '../../components/emptyListComponent/emptyListComponet';
 import ENV from '../../../env';
