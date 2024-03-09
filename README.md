@@ -36,3 +36,30 @@ The "DiagnalWorkshop" is a React Native application designed to showcase a colle
 ### `npm run android` // For Android
 
 Make sure you have the necessary development environment set up for React Native. You can find detailed instructions in the React Native documentation.
+
+## Project Structure
+    .
+    ├── ...
+    │   ├── assets 
+    │   │        └── icons            
+    │   ├── components 
+    │   │        ├── emptyListComponent
+    │   │        ├── renderImageItem
+    │   │        └──searchHeader
+    │   └── screens  
+    │            ├── aboutScreen
+    │            └──homeScreen
+    │            
+    │                 
+    └── README.md
+
+## Dependencies
+
+The project relies on the following dependencies:
+
+- react-navigation/native
+- react-navigation/stack
+- react-native-gesture-handler
+- react-native-screens
+
+These dependencies are managed using npm and will be installed automatically when you run `npm install` as described in the Installation section.
