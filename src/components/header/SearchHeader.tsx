@@ -8,6 +8,7 @@ import {
     ImageBackground,
 } from 'react-native';
 import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 interface SearchHeaderProps {
     searchText: string;
@@ -16,6 +17,7 @@ interface SearchHeaderProps {
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChange }) => {
     const searchRef = useRef<TextInput>(null);
+    const navigation = useNavigation();
 
     return (
         <ImageBackground
@@ -24,6 +26,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChang
         >
             <View style={styles.outerWrap}>
                 <TouchableOpacity
+                onPress={() => navigation.navigate('About')}
                 >
                     <Image
                         style={styles.backIcon}
