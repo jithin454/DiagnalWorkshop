@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, Image, Dimensions, LayoutAnimation } from 'react-native';
 import { styles } from './styles'; // Adjust the import path as necessary
+import ENV from '../../../env';
 
 interface Item {
   name: string;
@@ -12,8 +13,8 @@ interface RenderImageItemProps {
 }
 
 const RenderImageItem: React.FC<RenderImageItemProps> = ({ item }) => {
-  const imagePath = `https://jithin454.github.io/PaginationApi/images/${item['poster-image']}`;
-  const imagePlaceHolder = 'https://img.freepik.com/premium-vector/photo-icon-picture-icon-image-sign-symbol-vector-illustration_64749-4409.jpg'
+  const imagePath = `${ENV.apiUrl}images/${item['poster-image']}`;
+  const imagePlaceHolder = ENV.placeHolderUrl;
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const [hasError, setHasError] = React.useState(false);
 

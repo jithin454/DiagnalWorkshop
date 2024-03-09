@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, TextInputKeyPressEventData, View } from 'react-native';
 import RenderImageItem from '../../components/renderImageItem/renderImageItem';
 import SearchHeader from '../../components/header/SearchHeader';
 import { styles } from './styles';
 import EmptyListComponent from '../../components/emptyListComponent/emptyListComponet';
+import ENV from '../../../env';
 
 function HomeScreen(): React.JSX.Element {
   const [searchText, setSearchText] = useState<string>('');
@@ -13,7 +14,7 @@ function HomeScreen(): React.JSX.Element {
   const fetchData = useCallback(async () => {
     try {
       dispatch({ type: 'FETCH_START' });
-      const response = await fetch(`https://jithin454.github.io/PaginationApi/CONTENTLISTINGPAGE-PAGE${state.page}.json`);
+      const response = await fetch(`${ENV.apiUrl}CONTENTLISTINGPAGE-PAGE${state.page}.json`);
       const data = await response.json();
       const { 'total-content-items': totalContentItems, 'page-size-returned': pageSizeReturned, 'content-items': contentItems } = data.page;
 
@@ -45,10 +46,14 @@ function HomeScreen(): React.JSX.Element {
   }, []);
 
   const handleTextChange = (text: string) => {
-    setSearchText(text);
+    if (text.length <= 30) {
+      setSearchText(text);
+    }
   };
 
-  const footerComponent = useCallback(() => <View style={styles.footer} />, []);
+
+
+  const footerComponent = useCallback(() =>  <View style={styles.footer} />, []);
 
   return (
     <SafeAreaView style={styles.Container}>
