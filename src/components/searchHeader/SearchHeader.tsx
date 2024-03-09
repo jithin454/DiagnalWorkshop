@@ -16,6 +16,7 @@ interface SearchHeaderProps {
 }
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChange }) => {
+    // Ref for the search input field to focus
     const searchRef = useRef<TextInput>(null);
     const navigation = useNavigation();
 
@@ -26,7 +27,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChang
         >
             <View style={styles.outerWrap}>
                 <TouchableOpacity
-                onPress={() => navigation.navigate('About')}
+                    onPress={() => navigation.navigate('About')}
                 >
                     <Image
                         style={styles.backIcon}
@@ -35,7 +36,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChang
                 </TouchableOpacity>
                 <TextInput
                     style={styles.searchText}
-                    ref={searchRef}
+                    ref={searchRef} // Assign ref for focus management
                     placeholder="Search"
                     cursorColor="#ccc"
                     placeholderTextColor="#ccc"

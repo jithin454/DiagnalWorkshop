@@ -11,10 +11,12 @@ function HomeScreen(): React.JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState);
   const regex = useMemo(() => new RegExp(`^.{0,30}${searchText}.{0,}`, 'i'), [searchText]);
   
+// Function to fetch data and dispatch corresponding action with repect to the API response
 
   const fetchData = useCallback(async () => {
     try {
       dispatch({ type: 'FETCH_START' });
+      // removed the base url from the JSX part without using any external packages.
       const response = await fetch(`${ENV.apiUrl}CONTENTLISTINGPAGE-PAGE${state.page}.json`);
       const data = await response.json();
       const { 'total-content-items': totalContentItems, 'page-size-returned': pageSizeReturned, 'content-items': contentItems } = data.page;
@@ -30,15 +32,21 @@ function HomeScreen(): React.JSX.Element {
     }
   }, [state.page, state.listData]);
 
+  // Function to handle end reached event and Fetch more data when end of list is reached
+
   const handleEndReached = useCallback(() => {
     if (!state.isLoading && !state.listEnd) {
       fetchData();
     }
   }, [state.isLoading, state.listEnd, fetchData]);
 
+  // Generate a random key for each list item in the fatlist
+
   const getRandomKey = useCallback((name: string) => {
     return name + Math.random().toString().substr(2, 9);
   }, []);
+
+  // Filtering the data based on search input with using regex
 
   const filteredData = useMemo(() => state.listData.filter(item => regex.test(item.name)), [state.listData, regex]);
 
@@ -51,8 +59,6 @@ function HomeScreen(): React.JSX.Element {
       setSearchText(text);
     }
   };
-
-
 
   const footerComponent = useCallback(() =>  <View style={styles.footer} />, []);
 
@@ -78,12 +84,14 @@ function HomeScreen(): React.JSX.Element {
         />
       ) : (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator color={'#fff'} />
+          <ActivityIndicator size={'large'}  color={'red'} />
         </View>
       )}
     </SafeAreaView>
   );
 }
+
+// Initial state for listing and paginating the data
 
 const initialState = {
   page: 1,
@@ -92,6 +100,8 @@ const initialState = {
   isLoading: false,
   loaded: false
 };
+
+// Reducer function for managing  fetch data, Loading state of the data , increment page number and listEnd state
 
 function reducer(state, action) {
   switch (action.type) {
