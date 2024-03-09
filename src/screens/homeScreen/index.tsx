@@ -9,7 +9,8 @@ import ENV from '../../../env';
 function HomeScreen(): React.JSX.Element {
   const [searchText, setSearchText] = useState<string>('');
   const [state, dispatch] = useReducer(reducer, initialState);
-  const regex = useMemo(() => new RegExp(searchText, 'i'), [searchText]);
+  const regex = useMemo(() => new RegExp(`^.{0,30}${searchText}.{0,}`, 'i'), [searchText]);
+  
 
   const fetchData = useCallback(async () => {
     try {
