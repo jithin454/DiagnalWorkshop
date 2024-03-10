@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import ENV from '../../../env';
 
 interface EmptyListComponentProps {
   searchText: string;
@@ -7,8 +8,13 @@ interface EmptyListComponentProps {
   listEnd: boolean;
   handleEndReached: () => void;
 }
+const { width, height } = Dimensions.get('window');
+
 
 const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isLoading, listEnd, handleEndReached }) => {
+  const imagePlaceHolder = ENV.noDataFound;
+
+
   useEffect(() => {
     // Ensure that the handleEndReached function is called only when the condtion is satisfied
     if (searchText && !isLoading && !listEnd) {
@@ -18,7 +24,7 @@ const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isL
 
   return (
     <View style={styles.noDataContainer}>
-      <Text style={styles.noDataText}>No data found!.</Text>
+      <Image style={styles.image} source={{ uri: imagePlaceHolder }} />
     </View>
   );
 };
@@ -28,6 +34,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    height: height / 3,
+    width: width  - 80
   },
   noDataText: {
     fontSize: 16,
