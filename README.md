@@ -25,6 +25,7 @@ The "DiagnalWorkshop" is a React Native application designed to showcase a colle
 3. Install the dependencies:
 
 ### `npm install`
+### `cd ios && pod install`
 
 4. Start the development server:
 
