@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import ENV from '../../../env';
+import { styles } from './styles';
 
 interface EmptyListComponentProps {
   searchText: string;
@@ -8,7 +9,6 @@ interface EmptyListComponentProps {
   listEnd: boolean;
   handleEndReached: () => void;
 }
-const { width, height } = Dimensions.get('window');
 
 
 const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isLoading, listEnd, handleEndReached }) => {
@@ -29,20 +29,5 @@ const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isL
   );
 };
 
-const styles = StyleSheet.create({
-  noDataContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    height: height / 3,
-    width: width  - 80
-  },
-  noDataText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default EmptyListComponent;
