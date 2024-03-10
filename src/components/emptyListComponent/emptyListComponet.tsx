@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Image} from 'react-native';
+
 import ENV from '../../../env';
-import { styles } from './styles';
+import {styles} from './styles';
 
 interface EmptyListComponentProps {
   searchText: string;
@@ -10,10 +11,13 @@ interface EmptyListComponentProps {
   handleEndReached: () => void;
 }
 
-
-const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isLoading, listEnd, handleEndReached }) => {
+const EmptyListComponent: React.FC<EmptyListComponentProps> = ({
+  searchText,
+  isLoading,
+  listEnd,
+  handleEndReached,
+}) => {
   const imagePlaceHolder = ENV.noDataFound;
-
 
   useEffect(() => {
     // Ensure that the handleEndReached function is called only when the condtion is satisfied
@@ -24,10 +28,9 @@ const EmptyListComponent: React.FC<EmptyListComponentProps> = ({ searchText, isL
 
   return (
     <View style={styles.noDataContainer}>
-      <Image style={styles.image} source={{ uri: imagePlaceHolder }} />
+      <Image style={styles.image} source={{uri: imagePlaceHolder}} />
     </View>
   );
 };
-
 
 export default EmptyListComponent;

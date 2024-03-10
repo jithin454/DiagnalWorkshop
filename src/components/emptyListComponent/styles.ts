@@ -1,7 +1,7 @@
 // styles.tsx
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   noDataContainer: {
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   image: {
     height: height / 3,
-    width: width  - 80
+    width: width - 80,
   },
   noDataText: {
     fontSize: 16,

@@ -1,58 +1,59 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import {
-    Text,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    View,
-    ImageBackground,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ImageBackground,
 } from 'react-native';
-import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
+import {styles} from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 interface SearchHeaderProps {
-    searchText: string;
-    handleTextChange: (text: string) => void;
+  searchText: string;
+  handleTextChange: (text: string) => void;
 }
 
-const SearchHeader: React.FC<SearchHeaderProps> = ({ searchText, handleTextChange }) => {
-    // Ref for the search input field to focus
-    const searchRef = useRef<TextInput>(null);
-    const navigation = useNavigation();
+const SearchHeader: React.FC<SearchHeaderProps> = ({
+  searchText,
+  handleTextChange,
+}) => {
+    
+  // Ref for the search input field to focus
+  const searchRef = useRef<TextInput>(null);
+  const navigation = useNavigation();
 
-    return (
-        <ImageBackground
-            source={require('../../assets/icons/nav_bar.png')}
-            style={styles.backGround}
-        >
-            <View style={styles.outerWrap}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('About')}
-                >
-                    <Image
-                        style={styles.backIcon}
-                        source={require('../../assets/icons/arrow.png')}
-                    />
-                </TouchableOpacity>
-                <TextInput
-                    style={styles.searchText}
-                    ref={searchRef} // Assign ref for focus management
-                    placeholder="Search"
-                    cursorColor="#ccc"
-                    placeholderTextColor="#ccc"
-                    selectionColor="#ccc"
-                    value={searchText}
-                    onChangeText={handleTextChange}
-                />
-                <TouchableOpacity onPress={() => searchRef.current?.focus()}>
-                    <Image
-                        style={styles.searchIcon}
-                        source={require('../../assets/icons/search.png')}
-                    />
-                </TouchableOpacity>
-            </View>
-        </ImageBackground>
-    );
+  return (
+    <ImageBackground
+      source={require('../../assets/icons/nav_bar.png')}
+      style={styles.backGround}>
+      <View style={styles.outerWrap}>
+        <TouchableOpacity onPress={() => navigation.navigate('About')}>
+          <Image
+            style={styles.backIcon}
+            source={require('../../assets/icons/arrow.png')}
+          />
+        </TouchableOpacity>
+        <TextInput
+          style={styles.searchText}
+          ref={searchRef} // Assign ref for focus management
+          placeholder="Search"
+          cursorColor="#ccc"
+          placeholderTextColor="#ccc"
+          selectionColor="#ccc"
+          value={searchText}
+          onChangeText={handleTextChange}
+        />
+        <TouchableOpacity onPress={() => searchRef.current?.focus()}>
+          <Image
+            style={styles.searchIcon}
+            source={require('../../assets/icons/search.png')}
+          />
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
+  );
 };
 
 export default SearchHeader;

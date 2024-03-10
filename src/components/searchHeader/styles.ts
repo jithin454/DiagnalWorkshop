@@ -1,8 +1,8 @@
 // styles.ts
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  backGround: { height: 70, zIndex: 1, paddingHorizontal: 10, marginTop: 20, },
+  backGround: {height: 70, zIndex: 1, paddingHorizontal: 10, marginTop: 20},
   searchBarContainer: {
     height: 70,
     width: '100%',
@@ -14,7 +14,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
-  outerWrap: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  outerWrap: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   backIcon: {
     width: 20,
     height: 20,

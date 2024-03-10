@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'; // Import ActivityIndicator
-import RenderImageItem from '../../components/renderImageItem/renderImageItem';
-import { useNavigation } from '@react-navigation/native';
-import ENV from '../../../env';
-import { styles } from './styles';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+import RenderImageItem from '../../components/renderImageItem/renderImageItem';
+import {useNavigation} from '@react-navigation/native';
+
+import ENV from '../../../env';
+import {styles} from './styles';
 
 const AboutScreen = () => {
   const [listData, setListData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
 
-  // fetching the data to show list of items in a scrollview
 
+  // fetching the data to show list of items in a scrollview
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${ENV.apiUrl}CONTENTLISTINGPAGE-PAGE1.json`);
+      const response = await fetch(
+        `${ENV.apiUrl}CONTENTLISTINGPAGE-PAGE1.json`,
+      );
       const data = await response.json();
-      const {
-        'content-items': contentItems,
-      } = data.page;
+      const {'content-items': contentItems} = data.page;
 
       setListData(contentItems.content);
     } catch (error) {
@@ -43,22 +51,25 @@ const AboutScreen = () => {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.viewAllButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={styles.viewAllButton}>
             <Text style={styles.viewAllButtonText}>View All.</Text>
           </TouchableOpacity>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {listData.map((item, index) => (                              // maping for preview the list of data
-              <RenderImageItem key={index.toString()} item={item} />
-            ))}
+            {listData.map(
+              (
+                item,
+                index, // maping for preview the list of data
+              ) => (
+                <RenderImageItem key={index.toString()} item={item} />
+              ),
+            )}
           </ScrollView>
-
         </>
-
       )}
-
     </View>
   );
 };
-
 
 export default AboutScreen;
