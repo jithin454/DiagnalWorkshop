@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useReducer, useMemo } from 'react';
-import { ActivityIndicator, FlatList, NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, TextInputKeyPressEventData, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, NativeSyntheticEvent, SafeAreaView, StyleSheet, Text, TextInputKeyPressEventData, View } from 'react-native';
 import RenderImageItem from '../../components/renderImageItem/renderImageItem';
 import SearchHeader from '../../components/searchHeader/SearchHeader';
 import { styles } from './styles';
@@ -10,6 +10,7 @@ function HomeScreen(): React.JSX.Element {
   const [searchText, setSearchText] = useState<string>('');
   const [state, dispatch] = useReducer(reducer, initialState);
   const regex = useMemo(() => new RegExp(`^.{0,30}${searchText}.{0,}`, 'i'), [searchText]);
+  const logo = ENV.log;
 
   // Function to fetch data and dispatch corresponding action with repect to the API response
 
@@ -86,6 +87,7 @@ function HomeScreen(): React.JSX.Element {
         />
       ) : (
         <View style={styles.loaderContainer}>
+          <Image style={styles.image} source={{ uri: logo }} />
           <ActivityIndicator size={'large'} color={'red'} />
         </View>
       )}

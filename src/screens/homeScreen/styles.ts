@@ -1,10 +1,19 @@
 // styles.tsx
 import { StyleSheet, Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
+
 
 export const styles = StyleSheet.create({
   Container: {
     flex: 1,
     backgroundColor: '#000'
+  },
+  image: {
+    height: height / 4,
+    width: width /2,
+    borderRadius: 20,
+    alignSelf: 'center',
+    marginBottom: 20
   },
   listStyle: {
     marginTop: -30,
